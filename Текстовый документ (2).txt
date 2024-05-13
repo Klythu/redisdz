@@ -1,0 +1,41 @@
+задание 1
+
+127.0.0.1:6379> set index index precalculated content
+(error) ERR syntax error
+127.0.0.1:6379> set index "index precalculated content"
+OK
+127.0.0.1:6379> exists index
+(integer) 1
+127.0.0.1:6379> ttl index
+(integer) -1
+127.0.0.1:6379> persist index
+(integer) 0
+127.0.0.1:6379> ttl index
+(integer) -1
+
+задание 2
+
+127.0.0.1:6379> zadd rating 10 mesql
+(integer) 1
+127.0.0.1:6379> zadd rating 20 postgresql
+(integer) 1
+127.0.0.1:6379> zadd rating 30 mongodb
+(integer) 1
+127.0.0.1:6379> zadd rating 40 redis
+(integer) 1
+127.0.0.1:6379> zincrby rating 15 mesql
+"25"
+127.0.0.1:6379> zrevrank rating mesql
+(integer) 1
+
+задание 3 скриншот*
+
+задание 4
+
+127.0.0.1:6379> script load "redis.call('set',KEYS[1],ARGV[1]*ARGV[1])"
+"330dd03c79f6c89fbeade98af5b61b156fa5b73d"
+127.0.0.1:6379> evalsha 330dd03c79f6c89fbeade98af5b61b156fa5b73d 1 two 2
+(nil)
+127.0.0.1:6379> get two
+"4"
+127.0.0.1:6379>
